@@ -114,6 +114,12 @@ app.post('/users', async (req, res) => {
   }
 });
 app.get('/users', async (req, res) => {
+  if (!mongoClient) {
+    console.error('MongoDB client is not connected.');
+    res.status(500).send('MongoDB client is not connected.');
+    return;
+  }
+
   console.log('youse');
   try {
     // Assuming mongoClient is already connected to your MongoDB instance
